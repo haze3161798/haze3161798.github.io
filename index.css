@@ -1,0 +1,91 @@
+.head-img-wrapper {
+  width: 180px;
+  padding-top: 50%;
+  position: relative;
+  overflow: hidden;
+}
+.head-img {
+  position: absolute;
+  top: -20%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  
+}
+.my-info {
+  font-size: 20px;
+}
+.my-info span {
+  color: orange;
+  padding-right: 2px;
+}
+.title {
+  color:orange;
+}
+.skill-item {
+  width: 50%;
+  padding: 20px;
+}
+.experience__line-start {
+  margin-left: 16px;
+  width: 128px;
+  background-color: orange;
+  overflow : hidden;
+  text-overflow : ellipsis;
+  white-space : nowrap;
+  transition: all 0.3s
+}
+.experience__line {
+  margin:0 0 6px 16px;
+  width: 768px;
+  background-color: orange;
+  overflow : hidden;
+  text-overflow : ellipsis;
+  white-space : nowrap;
+  transition: all 0.3s;
+}
+.experience__line-start:hover {
+  text-overflow : ellipsis;
+  white-space : nowrap;
+  width: 208px;
+}
+.experience__year__wrapper {
+  margin-left: -96px ;
+}
+.experience__year {
+  padding: 16px 0 0 96px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.experience__year::before {
+  position: absolute;
+  top:5px;
+  left:112px;
+  width: 10px;
+  height: 10px;
+  content: '';
+  border-radius: 50%;
+  background-color: #000;
+}
+.img-wrapper {
+  width: 250px;
+  flex-shrink: 0;
+}
+.img-container {
+  padding-top: 80%;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.gttv {
+  background-image: url(./assets/GTTV.jpg);
+}
+.bazi {
+  background-image: url(./assets/bazi.jpg);
+}
+.element {
+  background-image: url(./assets/element.jpg);
+}
+.donson {
+  background-image: url(./assets/donson.jpg);
+}

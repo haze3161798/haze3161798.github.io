@@ -5,9 +5,211 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>作品集</title>
+  <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<link  rel="stylesheet"  href="./index.css">
 </head>
 <body>
-  <a style="margin-right: 6px;" href="./dongsen/index.html">
+  <section class="container pt-5">   
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="row g-0">
+          <div class="head-img-wrapper rounded-circle">
+            <img class="w-100 head-img " src="./assets/head.jpg" alt="">
+          </div>
+          <div class="pt-3 my-info">
+            <span>應徵職務:</span>
+            前端工程師
+          </div>
+        </div>
+        <div class="my-info">
+          <div>
+            <span>姓名:</span>
+            陳鈺杰 / Jay
+          </div>
+          <div>
+            <span>電話:</span>
+            0905386963
+          </div>
+          <div>
+            <span>信箱:</span>
+            haze3161798@gmail.com</div>
+          <div>
+            <span>戶籍:</span>
+            高雄
+          </div>
+          <div>
+            <span>生日:</span>
+            1993/12/28(28歲)
+          </div>
+        </div>
+      </div>
+  </section>
+  <section class="container pt-5">
+    <h2 class="title">
+      技能
+    </h2>
+    <div class="ps-3">
+      <div class="row g-0">
+        <ul class="skill-item">
+          <span class="h5">
+            Javascript
+          </span>
+          <li class="list-group-item border-0">
+            有實際接過api</br>
+            api有新增刪除閱讀以及修改</br>
+            需要使用使用async await promise then ...等等的非同步處理</br>
+            接回來之後array的操作 像是foreach map concat includes append ...(解構)</br>
+        </ul>
+        <ul class="skill-item">
+          <span class="h5">
+            CSS & HTML
+          </span>
+          <li class="list-group-item border-0">            
+            主要使用Bootstrap開發 (bs4/bs5皆可)</br>
+            亦有接觸過tailwind
+          </li>
+        </ul>
+        <ul class="skill-item">
+          <span class="h5">
+            多人協作
+          </span>
+          <li class="list-group-item border-0">                
+            有使用git lab多人開發經驗 了解git流程</br>
+            專案除了主分之以外還會開不同分支</br>
+            例如:dev/int</br>
+            較大型的還會再開第三層甚至更多分支 例如feature/dev-XXX之類的</br>
+            然後再往上merge</br>
+            每天開發前要記得pull 開發後要記得push 否則很容易衝突</br>
+            常用的有commit -m/-am ,push, branch, check out</br>
+            pull 常與--rebase, origin+分支名稱一同使用……等等</br>
+            不同的分支要合併要使用merge(pr)</br>
+            除了git外 多人協作還需要注意註解要寫清楚 否則會有人不知道你在幹嘛
+          </li>
+        </ul>
+        <ul class="skill-item">
+          <span class="h5">
+            VUE
+          </span>
+          <li class="list-group-item border-0">                
+            使用VUE框架 主要開發使用VUE2(options api)</br>
+            亦可使用  VUE3 (composition api)</br>
+            vue常使用的有:methods computed data components mixins watch(這個比較少用)</br>
+            常用生命周期有 beforeCreate created beforeMount mounted beforedestory destoryed</br>
+            另外少用的還有beforeUpdate與update
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!-- <section class="container pt-5">
+    <h2 class="title">
+      近期經歷(太久遠就不詳細列出了)
+    </h2>
+    <div class="d-inline-block border-start border-bottom border-dark ps-2 pb-2">
+      <div class="experience__line" style="margin-left:144px;">
+        成立硬體工作室 一開始是副業 後來客源較為穩定之後才專心經營 到目前為止還是有在當成副業在接案 但因資金不足 一個人的人力有限 硬體市場波動過大... 與其他種種困難想再擴大有困難 所以才想轉行
+      </div>
+      <div class="experience__line-start">
+        出生求學當兵與不太重要工作
+      </div>
+    </div>
+    <div class="d-flex experience__year__wrapper">
+      <div class="experience__year">
+        1993
+      </div>
+      <div class="experience__year">
+        2015
+      </div>
+      <div class="experience__year">
+        2016
+      </div>
+      <div class="experience__year">
+        2017
+      </div>
+      <div class="experience__year">
+        2018
+      </div>
+      <div class="experience__year">
+        2019
+      </div>
+      <div class="experience__year">
+        2020
+      </div>
+      <div class="experience__year">
+        2021
+      </div>
+    </div>
+  </section> -->
+  <section class="container pt-5">
+    <h2 class="title">
+      作品集(包含上線作品)
+    </h2>
+    <a class="py-5 d-block text-decoration-none text-black" target="_blank" href="https://gttvweb-tde.wowotv.tw/latestRecommended.html">
+      <div class="d-flex">
+        <div class="img-wrapper">
+          <div class="img-container gttv"></div>
+        </div>
+        <div class="ps-3">
+          <h3>GTTV</h3>
+          <div>
+            此專案是與一名資深前端工程師合作
+            主要負責切版 除了電視館以外(電視館是甲方製作) 幾乎所有的板都是我切的
+              還有部分的JS控制與API串接，使用VUE框架開發 無使用CSS框架
+              因大多數功能需要有帳號密碼且無法上傳github，詳細的功能只能面試時做展示            
+          </div>
+        </div>
+      </div>
+    </a>
+    <a class="py-5 d-block text-decoration-none text-black" href="./bazsystem/index.html">
+      <div class="d-flex">
+        <div class="img-wrapper">
+          <div class="img-container bazi"></div>
+        </div>
+        <div class="ps-3">
+          <h3>八字排盤系統</h3>
+          <div>
+            此專案是與一名資深前端工程師合作
+            主要負責切版 除了電視館以外(電視館是甲方製作) 幾乎所有的板都是我切的
+              還有部分的JS控制與API串接，使用VUE框架開發 無使用CSS框架
+              因大多數功能需要有帳號密碼且無法上傳github，詳細的功能只能面試時做展示            
+          </div>
+        </div>
+      </div>
+    </a>
+    <a class="py-5 d-block text-decoration-none text-black" href="./element/index.html">
+      <div class="d-flex">
+        <div class="img-wrapper">
+          <div class="img-container element"></div>
+        </div>
+        <div class="ps-3">
+          <h3>各種小元件</h3>
+          <div>
+            此專案是與一名資深前端工程師合作
+            主要負責切版 除了電視館以外(電視館是甲方製作) 幾乎所有的板都是我切的
+              還有部分的JS控制與API串接，使用VUE框架開發 無使用CSS框架
+              因大多數功能需要有帳號密碼且無法上傳github，詳細的功能只能面試時做展示            
+          </div>
+        </div>
+      </div>
+    </a>
+    <a class="py-5 d-block text-decoration-none text-black" href="./dongsen/index.html">
+      <div class="d-flex">
+        <div class="img-wrapper">
+          <div class="img-container donson"></div>
+        </div>
+        <div class="ps-3">
+          <h3>東森設計空間</h3>
+          <div>
+            此專案是與一名資深前端工程師合作
+            主要負責切版 除了電視館以外(電視館是甲方製作) 幾乎所有的板都是我切的
+              還有部分的JS控制與API串接，使用VUE框架開發 無使用CSS框架
+              因大多數功能需要有帳號密碼且無法上傳github，詳細的功能只能面試時做展示            
+          </div>
+        </div>
+      </div>
+    </a>
+  </section>
+  <!-- <a class="" style="margin-right: 6px;" href="./dongsen/index.html">
   to 冬森設計空間
   </a>
   <a href="./element/index.html">
@@ -15,6 +217,6 @@
   </a>
   <a href="./bazsystem/index.html">
   to 八字排盤系統
-  </a>
+  </a> -->
 </body>
 </html>
