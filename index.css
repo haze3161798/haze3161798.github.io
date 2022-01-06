@@ -89,3 +89,26 @@
 .donson {
   background-image: url(./assets/donson.jpg);
 }
+.link-to-btn {
+  position: relative;
+  color: black;
+}
+.link-to-btn::after {
+  position: absolute;
+  content: "";
+  inset: 0;
+  background-color: black;
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:all 0.3s;
+}
+.link-to-btn:hover{
+  color:white ;
+}
+.link-to-btn:hover::after {
+  transform:scale(1)
+}
+.link-to-text {
+  position: relative;
+  z-index: 1;
+}
