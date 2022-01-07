@@ -13,8 +13,10 @@
   <section class="container pt-5">   
       <div class="d-flex justify-content-between align-items-center">
         <div class="row g-0">
-          <div class="head-img-wrapper rounded-circle">
-            <img class="w-100 head-img " src="./assets/head.jpg" alt="">
+          <div class="head-img-wrapper">
+            <div class="head-container rounded-circle">
+              <img class="w-100 head-img " src="./assets/head.jpg" alt="">
+            </div>
           </div>
           <div class="pt-3 my-info">
             <span>應徵職務:</span>
@@ -56,10 +58,7 @@
           </span>
           <li class="list-group-item border-0">
             較為熟悉ES6+語法 ES5語法例如var function...等等很少用所以較不熟悉
-            有實際接過api<br>
-            api有新增刪除閱讀以及修改<br>
-            需要使用使用async await promise then ...等等的非同步處理<br>
-            接回來之後array的操作 像是foreach map concat filter includes splice 解構 ...等等<br>
+            有實際接過api 會處理非同步問題(async promise)與接回來之後物件的操作 像是map concat includes 解構 ...等等<br>
             會寫一點點正規試(不熟練)
         </ul>
         <ul class="skill-item">
@@ -83,10 +82,7 @@
             例如:dev/int<br>
             較大型的還會再開第三層甚至更多分支 例如feature/dev-XXX之類的<br>
             然後再往上merge<br>
-            每天開發前要記得pull 開發後要記得push 否則很容易衝突<br>
-            常用的有commit -m/-am ,push, branch, check out<br>
-            pull 常與--rebase, origin+分支名稱一同使用……等等<br>
-            不同的分支要合併要使用merge(pr)<br>
+            常用的有commit -m/-am ,push, branch, pull 等等<br>
             除了git外 多人協作還需要注意註解要寫清楚 否則會有人不知道你在幹嘛
           </li>
         </ul>
@@ -96,10 +92,9 @@
           </span>
           <li class="list-group-item border-0">                
             使用VUE框架 主力開發使用VUE2(options api)<br>
-            VUE3 (composition api)學過一點點但很少使用<br>
-            vue常使用的有:methods computed data components mixins watch(這個比較少用)<br>
-            常用生命周期有 beforeCreate created beforeMount mounted beforedestory destoryed<br>
-            另外少用的還有beforeUpdate與update
+            會使用生命週期(created destroyed等等)與常用語法(methods v-if等等)<br>
+            作品集的GTTV就是用VUE2開發的<br>
+            VUE3 (composition api)學過一點但很少使用<br>
           </li>
         </ul>
       </div>
@@ -163,6 +158,9 @@
             此專案是與一名資深前端工程師合作
           拿到這個案子之後 才知道我們已經是第三手了 電視館與登入是甲方製作 其他由我們負責
           我知道有些地方很奇怪 但那是甲方要求 我們無法改變 此已交出 但我覺得有待優化
+          本專案使用<br>
+          js:vue vue-router vue-cli vuex<br>
+          css:scss(手刻 甲方禁止用框架)<br>
           <!-- CSS部分甲方規定要用手刻class 一開始接手的時候 CSS因為前一手的命名問題污染的亂七八糟
           為了解決這些問題 我們採用bem命名且取名較長並使用scoped 避免汙染
           但 如果我可以主導 我會更傾向用bootstrap或者tailwind 再搭配少部分手刻微調來開發 因為團隊合作會更方便讓其他人知道你寫了些什麼<br>
@@ -265,16 +263,6 @@
       </li>
       <li class="py-3">
         <div class="h3">
-          <span>鉅易科技</span>
-          <span class="ps-3 fs-5">2019年秋天-2020年農曆年後</span>
-        </div>
-        <div>
-          朋友的公司 人手不足所以去幫忙 主要做弱電與水電相關業務 旗津汙水處理廠與某大樓遠雄建案為任職期間做過較知名的案子<br>
-          到現在如果真的他有需要 我又有時間還是會去幫忙(他公司的師傅也日漸穩定了 所以久久一次而已)
-        </div>
-      </li>
-      <li class="py-3">
-        <div class="h3">
           <span>辰洋皮件與市場</span>
           <span class="ps-3 fs-5">2020年農曆年後-2021年5月</span>
         </div>
@@ -283,6 +271,16 @@
           肺炎較為緩和後原本要與房東合作一起開業 但因房東原本談好的條件後面看生意好又變卦 與其跟不清不楚的人合作 不如好聚好散 另起爐灶<br>
           後來廠商挖腳(其實我在老闆還未倒閉時廠商就挖腳過我了) 又加上有打算自行開業 所以去盤商那邊上班並學習相關知識<br>
           因於2021年2月開始學習程式 覺得有興趣 想往程式方向發展 本想於四月離職 但因人手不足老闆挽留(我跟老闆與同事感情不錯) 所以多做了一個半月於五月中離職
+        </div>
+      </li>
+      <li class="py-3">
+        <div class="h3">
+          <span>鉅易科技</span>
+          <span class="ps-3 fs-5">2019年秋天-2020年農曆年後</span>
+        </div>
+        <div>
+          朋友的公司 人手不足所以去幫忙 主要做弱電與水電相關業務 旗津汙水處理廠與某大樓遠雄建案為任職期間做過較知名的案子<br>
+          到現在如果真的他有需要 我又有時間還是會去幫忙(他公司的師傅也日漸穩定了 所以久久一次而已)
         </div>
       </li>
     </ul>

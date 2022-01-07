@@ -1,6 +1,9 @@
 .head-img-wrapper {
   width: 180px;
-  padding-top: 50%;
+
+}
+.head-container {
+  padding-top: 100%;
   position: relative;
   overflow: hidden;
 }
