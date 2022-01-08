@@ -57,17 +57,17 @@
             Javascript
           </span>
           <li class="list-group-item border-0">
-            較為熟悉ES6+語法 ES5語法例如var function...等等很少用所以較不熟悉
-            有實際接過api 會處理非同步問題(async promise)與接回來之後物件的操作 像是map concat includes 解構 ...等等<br>
-            會寫一點點正規試(不熟練)
+            較為熟悉ES6+語法<br>
+            有實際接過api 會處理非同步問題(async promise...等等)與接回來之後物件的操作 像是map concat includes 解構 ...等等<br>
+            會寫一點正規試
         </ul>
         <ul class="skill-item">
           <span class="h5">
             CSS & HTML
           </span>
           <li class="list-group-item border-0">  
-            大多數目前主流的版都切得出來 使用flex當主力 grid學習中<br>
-            主要使用scss 會寫變數($) sass亦有涉略(但不常用)<br>
+            大多數目前主流的版都切得出來 使用flex當主力<br>
+            主要使用scss 會寫變數($) sass亦有涉略<br>
             框架主要使用Bootstrap開發 (bs4/bs5皆可)<br>
             亦有接觸過tailwind
           </li>
@@ -77,13 +77,8 @@
             多人協作
           </span>
           <li class="list-group-item border-0">                
-            有使用git lab多人開發經驗 了解git流程<br>
-            專案除了主分之以外還會開不同分支<br>
-            例如:dev/int<br>
-            較大型的還會再開第三層甚至更多分支 例如feature/dev-XXX之類的<br>
-            然後再往上merge<br>
-            常用的有commit -m/-am ,push, branch, pull 等等<br>
-            除了git外 多人協作還需要注意註解要寫清楚 否則會有人不知道你在幹嘛
+            有使用git lab多人開發經驗 了解git流程 如merge commit ...等等<br>
+            除了git外 多人協作還需要注意註解與commit訊息要寫清楚 否則會有人不知道你在幹嘛
           </li>
         </ul>
         <ul class="skill-item">
@@ -92,9 +87,9 @@
           </span>
           <li class="list-group-item border-0">                
             使用VUE框架 主力開發使用VUE2(options api)<br>
-            會使用生命週期(created destroyed等等)與常用語法(methods v-if等等)<br>
+            會使用lifecycle (created destroyed)methods v-if...等等常用方法<br>
             作品集的GTTV就是用VUE2開發的<br>
-            VUE3 (composition api)學過一點但很少使用<br>
+            亦可使用vue3(composition api)
           </li>
         </ul>
       </div>
@@ -153,24 +148,17 @@
           </a>
         </div>
         <div class="ps-3">
-          <h3>GTTV</h3>
+          <h3>GTTV(亞太影音平台) 此為實際上線作品</h3>
           <div>
-            此專案是與一名資深前端工程師合作
-          拿到這個案子之後 才知道我們已經是第三手了 電視館與登入是甲方製作 其他由我們負責
-          我知道有些地方很奇怪 但那是甲方要求 我們無法改變 此已交出 但我覺得有待優化
-          本專案使用<br>
-          js:vue vue-router vue-cli vuex<br>
-          css:scss(手刻 甲方禁止用框架)<br>
-          <!-- CSS部分甲方規定要用手刻class 一開始接手的時候 CSS因為前一手的命名問題污染的亂七八糟
-          為了解決這些問題 我們採用bem命名且取名較長並使用scoped 避免汙染
-          但 如果我可以主導 我會更傾向用bootstrap或者tailwind 再搭配少部分手刻微調來開發 因為團隊合作會更方便讓其他人知道你寫了些什麼<br>
-          JS使用VUE框架開發 jq不是我們引的 當初拿到就有了(我也很想知道為啥都用vue了還要引jq)
-          隨選館api設計不良 導致讀取很久 那一頁要在created時 先打一隻API 把所有的主館ID取回來 再拿主館ID打副館ID(有幾十個副館) 因無法與甲方的後端溝通 所以就只能讓她這樣了
-          部分地方的key有重複是後端提供的ID重複 當然 這種情況最好是前端自己塞UUID進去 但因時程問題 發現他們給的ID有重複時 已經最後幾天的事情了 且這個案子甲方嚴重拖延 所以就沒有去改<br>
-          會員中心裡面的優惠方案資料結構有大改過 甲方後來要求 用api接回來以後的data裡面後端有另外帶一組status的資料(規則大概跟普通的http status code一樣)去判斷要顯示什麼<br>
-          流程控制(是否能播放影片)有好幾個地方是使用api回來的中文字去判斷 例如裡面有一串字提到免費 不管如何可以直接撥放 又例如有某一串字提到十八 就要跳popup詢問是否年滿18歲
-          我也是為了這個功能才去學正規式的<br> -->
-          關於這個案子 還有太多東西可以聊了 就待我們面試時再聊吧
+            <span class="text-danger">
+              使用技術<br>
+              js:vue vue-router vue-cli vuex<br>
+              css:scss(手刻 甲方禁止用框架)<br><br>
+            </span>
+            <span >
+              此專案是與一名資深前端工程師合作 電視館與登入是甲方製作 其他由我們負責<br>
+              我知道有些地方很奇怪 但那是甲方要求 我們無法改變 此已交出 但我覺得有待優化<br>
+            </span>
           </div>
         </div>
       </div>
@@ -186,12 +174,14 @@
       <div class="ps-3">
         <h3>八字排盤系統</h3>
         <div>
-          當我在思考 作品集要放什麼東西的時候 有個朋友跟我說 與其思考要做什麼 不如思考程式可以為你或別人的日常帶來什麼 於是 這個作品誕生了 <br>
-          雖然市面上已經有很多別人寫好的排盤系統了 但是電子排盤系統一直很不能讓一些大師接受的問題就是 他無法根據不同派別做調整(例如 有的人看節氣 有的人看農曆)
-          於是我決定把排盤這件事情寫成可調整的程式<br>
-          這個作品在8月的時候做的 之後接了上面的GTTV的案子還有一個比較小的沒放上來的切版案子 這個作品因此停更 因為這個作品比較久了 那個時候能力還很弱 所以有些寫法比較亂
-          裡面有出現不少function包function再return的情形 且資料處理的比較亂 全案待優化重構<br>
-          
+          <span class="text-danger">
+            使用技術<br>
+            js:vue2,vue-router,vuex<br>
+            css:bootstrap<br><br>
+          </span>
+          <span>
+            診斷內容僅供參考用 真正的問題與細節還是要去請教大師喔~!
+          </span>
         </div>
       </div>
       </div>
@@ -207,8 +197,12 @@
         <div class="ps-3">
           <h3>各種小元件</h3>
           <div>
+            <span class="text-danger">
+              使用技術<br>
+              js:vue2,<br>
+              css:bootstrap,大量transform,transition,animation<br><br>
+            </span>
             我其實還是比較喜歡寫一些會動的東西 有時間的時候 會去逛逛異國網站尋找靈感(尤其是日本網站 很多東西真的做得很精緻) 遇到喜歡的就把它寫出來 算是一點小興趣吧<br>
-            裡面大量使用 transform,transition,animation
           </div>
         </div>
       </div>
@@ -224,14 +218,19 @@
         <div class="ps-3">
           <h3>東森設計空間</h3>
           <div>
-            第一個作品集 也是最後一個練習題
-            這個網頁是跟教我程式的人要的設計稿 他本來有考慮要發給我做 可是礙於本案時程過緊 那個時候速度還不夠快 所以我就把設計稿要來當作品了<br>
-            這個作品最難的地方在form表單的切版與檔案上傳
+            <span class="text-danger">
+              使用技術<br>
+              js:vue3 options與api composition api混用,vite,vue-router<br>
+              css:tailwind<br><br>
+            </span>
+            <span>
+              練習composition api與tailwind時的作品
+            </span>
           </div>
         </div>
       </div>
   </section>
-  <section class="container py-5">
+  <section class="container pt-5">
     <h2 class="title">
       近期經歷
     </h2>
@@ -239,26 +238,27 @@
       <li class="py-3">
         <div class="h3">
           <span>杰e科技</span>
-          <span class="ps-3 fs-5">2015年-now</span>
+          <span class="ps-3 fs-5">2015年-now(目前為兼職)</span>
         </div>
         <div>
-          於2015年創立的工作室 一開始是副業 後來客源較為穩定之後才專心經營
-          主要做家用硬體設備(電腦相關) 亦有涉略少部分工控電腦與弱電
-          約於2018年時與朋友的公司合作 拓展弱電(偏資訊)相關業務 保安大隊(警察的特勤隊)為接過較知名的單位<br>
-          後來朋友公司財務狀況有問題最後倒閉就沒再繼續了<br>
-          到目前為止還是有在當成副業在接案 但因資金不足 一個人的人力有限 硬體市場波動過大... 與其他種種困難想再擴大有困難 所以才想轉行
+          <ul class="fs-4">
+            主要業務
+            <li class="list-group-item border-0 fs-5"> 家用電腦相關與少量工控電腦</li>
+            <li class="list-group-item border-0 fs-5">弱電工程</li>
+          </ul>
         </div>
       </li>
       <li class="py-3">
         <div class="h3">
           <span>程式相關接案</span>
-          <span class="ps-3 fs-5">2021年7月-now</span>
+          <span class="ps-3 fs-5">2021年7月-now(兼職)</span>
         </div>
         <div>
-          於2021年2月底開始跟朋友拜師學藝 學習程式 5月疫情爆發後在家閉關學習<br>
-          於2021年7月迎來人生中第一個前端案 第一個案子為小型切版案(我終於熬出頭了!!!)<br>
-          本來打算作品做完出來找工作的<br>
-          但於同年8月又接到亞太的GTTV案子 於2022年1月結案
+          <ul class="fs-4">
+            接過的案
+            <li class="list-group-item border-0 fs-5">GTTV(亞太影音平台)</li>
+            <li class="list-group-item border-0 fs-5">小型切版案</li>
+          </ul>
         </div>
       </li>
       <li class="py-3">
@@ -267,23 +267,52 @@
           <span class="ps-3 fs-5">2020年農曆年後-2021年5月</span>
         </div>
         <div>
-          2021年過完年後一陣子 於三民市場顧店 後來老闆在2020年夏天肺炎初期倒店後由房東接手<br>
-          肺炎較為緩和後原本要與房東合作一起開業 但因房東原本談好的條件後面看生意好又變卦 與其跟不清不楚的人合作 不如好聚好散 另起爐灶<br>
-          後來廠商挖腳(其實我在老闆還未倒閉時廠商就挖腳過我了) 又加上有打算自行開業 所以去盤商那邊上班並學習相關知識<br>
-          因於2021年2月開始學習程式 覺得有興趣 想往程式方向發展 本想於四月離職 但因人手不足老闆挽留(我跟老闆與同事感情不錯) 所以多做了一個半月於五月中離職
+          <ul class="fs-4">
+            主要業務
+            <li class="list-group-item border-0 fs-5"> 皮件類產品零售</li>
+            <li class="list-group-item border-0 fs-5">皮件類產品批發</li>
+          </ul>
         </div>
       </li>
-      <li class="py-3">
+      <li class="pt-3">
         <div class="h3">
           <span>鉅易科技</span>
           <span class="ps-3 fs-5">2019年秋天-2020年農曆年後</span>
         </div>
         <div>
-          朋友的公司 人手不足所以去幫忙 主要做弱電與水電相關業務 旗津汙水處理廠與某大樓遠雄建案為任職期間做過較知名的案子<br>
-          到現在如果真的他有需要 我又有時間還是會去幫忙(他公司的師傅也日漸穩定了 所以久久一次而已)
+          <ul class="fs-4">
+            主要業務
+            <li class="list-group-item border-0 fs-5"> 弱電工程</li>
+            <li class="list-group-item border-0 fs-5">少量水電工程</li>
+          </ul>
+
         </div>
       </li>
     </ul>
+  </section>
+  <section class="container py-5">
+    <h2 class="title">
+      自傳
+    </h2>
+    <div>
+      於2015年創立的工作室 一開始是副業 後來客源較為穩定之後才專心經營
+      主要做家用硬體設備(電腦相關) 亦有涉略少部分工控電腦與弱電
+      約於2018年時與朋友的公司合作 拓展弱電(偏資訊)相關業務 保安大隊(警察的特勤隊)為接過較知名的單位<br>
+      後來朋友公司財務狀況有問題最後倒閉就沒再繼續了<br>
+      到目前為止還是有在當成副業在接案 但因資金不足 一個人的人力有限 硬體市場波動過大... 與其他種種困難想再擴大有困難 所以才想轉行<br><br>
+      
+      於2019年秋天時 朋友的公司因人手不足所以找我去幫忙 主要做弱電與水電相關業務 旗津汙水處理廠與某大樓遠雄建案為任職期間做過較知名的案子<br>
+      到現在如果真的他有需要 我又有時間還是會去幫忙(他公司的師傅也日漸穩定了 所以久久一次而已)<br><br>
+
+      2021年過完年後一個月 於三民市場顧店 後來老闆在2020年夏天肺炎初期倒店後由房東接手<br>
+      肺炎較為緩和後原本要與房東合作一起開業 但因房東原本談好的條件後面看生意好又變卦 與其跟不清不楚的人合作 不如好聚好散 另起爐灶<br>
+      後來廠商挖腳(其實我在老闆還未倒閉時廠商就挖腳過我了) 又加上有打算自行開業 所以去盤商那邊上班並學習相關知識<br>
+      因於2021年2月在因緣際會下開始學習程式 覺得有興趣 開始雙線發展(皮件與程式)<br>
+      好險最後選擇程式這邊沒有開業 因此躲過了5月的疫情<br>
+      本想於四月離職 但因人手不足老闆挽留(我跟老闆與同事感情不錯) 所以多做了一個半月於五月中離職<br><br>
+      於2021年7月迎來第一個前端案子 是一個小型切版案(我終於敖出頭了!!!)<br>
+      又於同年八月接了GTTV的案子 於1月結案
+    </div>
   </section>
 </body>
 </html>
