@@ -1,3 +1,6 @@
+:root {
+  --primary:orange 
+}
 .head-img-wrapper {
   width: 180px;
 
@@ -19,20 +22,20 @@
   font-size: 20px;
 }
 .my-info span {
-  color: orange;
+  color: var(--primary);
   padding-right: 2px;
 }
 .title {
-  color:orange;
+  color:var(--primary);
 }
-.skill-item {
-  width: 50%;
-  padding: 20px;
+
+.skill-img {
+  width: 16px;
 }
 .experience__line-start {
   margin-left: 16px;
   width: 128px;
-  background-color: orange;
+  background-color: var(--primary);
   overflow : hidden;
   text-overflow : ellipsis;
   white-space : nowrap;
@@ -41,7 +44,7 @@
 .experience__line {
   margin:0 0 6px 16px;
   width: 768px;
-  background-color: orange;
+  background-color: var(--primary);
   overflow : hidden;
   text-overflow : ellipsis;
   white-space : nowrap;
@@ -114,4 +117,7 @@
 .link-to-text {
   position: relative;
   z-index: 1;
+}
+.company {
+  color: var(--primary);
 }
