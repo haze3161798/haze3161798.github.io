@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="./taichi.svg">
+  <title>第三方授權聲明 — 八字與大運排盤</title>
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(145deg, #0f172a, #020617);
+      color: #e2e8f0;
+      font-family: 'SF Mono', 'Consolas', 'Noto Sans Mono CJK TC', 'Courier New', monospace;
+      min-height: 100vh;
+    }
+    main {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    .back {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      padding: 0.4rem 0.9rem;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      border-radius: 0.5rem;
+      color: #4ade80;
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: background 0.2s;
+    }
+    .back:hover {
+      background: rgba(16, 185, 129, 0.2);
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-size: 0.82rem;
+      line-height: 1.65;
+      color: #cbd5e1;
+      margin: 0;
+    }
+    pre .hl {
+      color: #4ade80;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="./">← 返回排盤</a>
+    <pre>================================================================================
+  第三方授權聲明 / Third-Party Licenses
+================================================================================
+
+本工具（「八字與大運排盤」）基於諸多開源專案構建，特此致謝。
+所有列出的依賴皆以其各自授權條款提供；
+原始版權與授權聲明依照授權條款原文保留於下。
+
+
+================================================================================
+  核心致謝 / Acknowledgements
+================================================================================
+
+本專案得以誕生，仰賴以下核心開源作品：
+
+  • Vue 3 — Evan You (尤雨溪) 與 Vue 核心團隊
+    為本專案提供了整個前端響應式框架。
+    https://github.com/vuejs/core  (MIT License)
+
+  • lunar-javascript — 6tail
+    為本專案提供了陰陽曆轉換、八字排盤、節氣交節時刻等
+    命理核心計算邏輯。若無此套件，本工具無法存在。
+    https://github.com/6tail/lunar-javascript  (MIT License)
+
+  • Element Plus — Element Plus Team
+    為本專案提供了完整的 Vue 3 UI 元件庫。
+    https://github.com/element-plus/element-plus  (MIT License)
+
+  • ECharts — Apache Software Foundation
+    為本專案提供了五行能量雷達圖的繪製引擎。
+    https://github.com/apache/echarts  (Apache License 2.0)
+
+  • Tailwind CSS、Vite、TypeScript 等基礎建置工具。
+
+衷心感謝上述所有作者及維護者對開源社群的貢獻。
+
+
+================================================================================
+  完整依賴清單 / Full Dependency List (Production)
+================================================================================
+
+套件名稱                                          版本          授權
+--------------------------------------------------------------------------------
+@babel/helper-string-parser                       7.27.1        MIT
+@babel/helper-validator-identifier                7.28.5        MIT
+@babel/parser                                     7.28.5        MIT
+@babel/types                                      7.28.5        MIT
+@ctrl/tinycolor                                   4.2.0         MIT
+@element-plus/icons-vue                           2.3.2         MIT
+@floating-ui/core                                 1.7.5         MIT
+@floating-ui/dom                                  1.7.6         MIT
+@floating-ui/utils                                0.2.11        MIT
+@jridgewell/sourcemap-codec                       1.5.5         MIT
+@sxzz/popperjs-es                                 2.11.8        MIT
+@types/lodash                                     4.17.24       MIT
+@types/lodash-es                                  4.17.12       MIT
+@types/web-bluetooth                              0.0.20        MIT
+@vue/compiler-core                                3.5.26        MIT
+@vue/compiler-dom                                 3.5.26        MIT
+@vue/compiler-sfc                                 3.5.26        MIT
+@vue/compiler-ssr                                 3.5.26        MIT
+@vue/reactivity                                   3.5.26        MIT
+@vue/runtime-core                                 3.5.26        MIT
+@vue/runtime-dom                                  3.5.26        MIT
+@vue/server-renderer                              3.5.26        MIT
+@vue/shared                                       3.5.26        MIT
+@vueuse/core                                      12.0.0        MIT
+@vueuse/metadata                                  12.0.0        MIT
+@vueuse/shared                                    12.0.0        MIT
+async-validator                                   4.2.5         MIT
+csstype                                           3.2.3         MIT
+dayjs                                             1.11.20       MIT
+echarts                                           6.0.0         Apache-2.0
+element-plus                                      2.13.7        MIT
+entities                                          7.0.0         BSD-2-Clause
+estree-walker                                     2.0.2         MIT
+lodash                                            4.17.21       MIT
+lodash-es                                         4.17.21       MIT
+lodash-unified                                    1.0.3         MIT
+lunar-javascript                                  1.7.7         MIT
+magic-string                                      0.30.21       MIT
+memoize-one                                       6.0.0         MIT
+nanoid                                            3.3.11        MIT
+normalize-wheel-es                                1.2.0         BSD-3-Clause
+picocolors                                        1.1.1         ISC
+postcss                                           8.5.9         MIT
+source-map-js                                     1.2.1         BSD-3-Clause
+tslib                                             2.3.0         0BSD
+typescript                                        5.9.3         Apache-2.0
+vue                                               3.5.26        MIT
+vue-component-type-helpers                        3.2.6         MIT
+vue-echarts                                       8.0.1         MIT
+vue-toastification                                2.0.0-rc.5    MIT
+zrender                                           6.0.0         BSD-3-Clause
+
+共 51 個生產依賴；零 GPL/AGPL/LGPL/SSPL/Commons Clause 限制條款。
+本檢查結果由 license-checker-rseidelsohn 產生，最後更新：2026-04-11
+
+
+================================================================================
+  授權全文 / License Full Texts
+================================================================================
+
+
+--------------------------------------------------------------------------------
+  MIT License
+--------------------------------------------------------------------------------
+
+以下套件採用 MIT License；版權分屬各該套件作者。
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+關鍵作者版權聲明：
+  Copyright (c) 2013-present, Yuxi (Evan) You   — vue, @vue/*
+  Copyright (c) 2018, 6tail                      — lunar-javascript
+  Copyright (c) 2021-present, Element Plus Team  — element-plus, @element-plus/*
+  Copyright (c) 2014-present, Evan Wallace et al — magic-string, estree-walker
+  Copyright (c) iamkun                           — dayjs
+  Copyright (c) JS Foundation & contributors     — lodash, lodash-es
+  （完整列表請見各套件 node_modules/&lt;pkg&gt;/LICENSE 檔案）
+
+
+--------------------------------------------------------------------------------
+  Apache License 2.0
+--------------------------------------------------------------------------------
+
+以下套件採用 Apache License 2.0：
+  • echarts 6.0.0       — Copyright (c) Apache Software Foundation
+  • typescript 5.9.3    — Copyright (c) Microsoft Corporation
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+
+--------------------------------------------------------------------------------
+  ISC License
+--------------------------------------------------------------------------------
+
+以下套件採用 ISC License：picocolors
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER
+RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF
+CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
+CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+
+--------------------------------------------------------------------------------
+  BSD 2-Clause License
+--------------------------------------------------------------------------------
+
+以下套件採用 BSD 2-Clause：entities
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+ 1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
+
+ 2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE.
+
+
+--------------------------------------------------------------------------------
+  BSD 3-Clause License
+--------------------------------------------------------------------------------
+
+以下套件採用 BSD 3-Clause：normalize-wheel-es, source-map-js, zrender
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+ 1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
+ 3. Neither the name of the copyright holder nor the names of its contributors
+    may be used to endorse or promote products derived from this software
+    without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES ARE DISCLAIMED. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DAMAGES ARISING IN ANY WAY
+OUT OF THE USE OF THIS SOFTWARE.
+
+
+--------------------------------------------------------------------------------
+  0BSD (BSD Zero Clause License)
+--------------------------------------------------------------------------------
+
+以下套件採用 0BSD：tslib (Copyright Microsoft Corporation)
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER
+RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF
+CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
+CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+
+================================================================================
+  免責聲明 / Disclaimer
+================================================================================
+
+本工具之排盤結果與大運推算僅供參考，命理之說請理性看待。
+本工具完全不蒐集、儲存或傳送使用者輸入之任何生辰資料。
+</pre>
+  </main>
+</body>
+</html>

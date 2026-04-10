@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <style>
+    /* 淺色模式：經典黑白 */
+    .yang { fill: #f8fafc; }
+    .yin  { fill: #0f172a; }
+    .ring { stroke: #64748b; }
+
+    /* 深色模式：黑色改為中灰，確保陰半在深色分頁仍可辨識 */
+    @media (prefers-color-scheme: dark) {
+      .yang { fill: #f1f5f9; }
+      .yin  { fill: #94a3b8; }
+      .ring { stroke: #cbd5e1; }
+    }
+  </style>
+
+  <!-- 陽底圓（白/近白） -->
+  <circle cx="50" cy="50" r="48" class="yang"/>
+
+  <!-- 陰半邊：S 曲線路徑 -->
+  <path
+    d="M50,2
+       A48,48 0 0,1 50,98
+       A24,24 0 0,0 50,50
+       A24,24 0 0,1 50,2 Z"
+    class="yin"/>
+
+  <!-- 中性灰輪廓，兩種主題下都看得見邊界 -->
+  <circle cx="50" cy="50" r="48" fill="none" class="ring" stroke-width="1.5"/>
+
+  <!-- 陽中陰：上半白區的深色小點 -->
+  <circle cx="50" cy="26" r="6" class="yin"/>
+  <!-- 陰中陽：下半黑區的亮色小點 -->
+  <circle cx="50" cy="74" r="6" class="yang"/>
+</svg>
