@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>裁判計分系統</title>
+<style>
+  :root {
+    --bg: #f4f6f8;
+    --panel: #ffffff;
+    --line: #d9dee3;
+    --ink: #1f2933;
+    --muted: #6b7682;
+    --brand: #2563eb;
+    --brand-dark: #1d4ed8;
+    --good: #16a34a;
+    --drop-hi: #fde2e1;   /* 最高被去掉 */
+    --drop-lo: #e0f0ff;   /* 最低被去掉 */
+    --drop-hi-bd: #f3aeac;
+    --drop-lo-bd: #a9d2f5;
+    --radius: 12px;
+    --barH: 64px;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; }
+  body {
+    font-family: -apple-system, "Segoe UI", "Microsoft JhengHei", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-text-size-adjust: 100%;
+    padding-bottom: calc(var(--barH) + env(safe-area-inset-bottom));
+  }
+
+  header {
+    background: var(--brand);
+    color: #fff;
+    padding: 12px 16px;
+    position: sticky; top: 0; z-index: 30;
+  }
+  header h1 { font-size: 18px; margin: 0; }
+  header .rule { font-size: 12px; opacity: .9; display: block; margin-top: 2px; }
+
+  .layout { display: grid; gap: 14px; padding: 14px; }
+
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 14px;
+  }
+  .panel h2 {
+    font-size: 15px;
+    margin: 0 0 12px;
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  }
+
+  /* ---- 控制列 ---- */
+  .controls { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+  .judge-ctrl { display: flex; align-items: center; gap: 10px; }
+  .judge-ctrl label { font-size: 14px; color: var(--muted); }
+  .stepper { display: flex; align-items: center; gap: 8px; }
+  .stepper .num { min-width: 30px; text-align: center; font-size: 19px; font-weight: 700; }
+  .hint { font-size: 12px; color: var(--muted); }
+
+  button {
+    font: inherit; cursor: pointer;
+    border: 1px solid var(--line); background: #fff; color: var(--ink);
+    border-radius: 10px; padding: 10px 14px; min-height: 44px;
+    transition: background .12s, border-color .12s;
+  }
+  button:active { transform: translateY(1px); }
+  .btn-round { width: 44px; height: 44px; min-height: 44px; padding: 0; font-size: 22px; line-height: 1; }
+  .btn-primary { background: var(--brand); color: #fff; border-color: var(--brand); font-weight: 700; }
+  .btn-primary:active { background: var(--brand-dark); }
+  .btn-ghost { background: transparent; }
+  .btn-danger { color: #b91c1c; border-color: #f0c5c5; }
+
+  /* ---- 選手卡片 ---- */
+  .cards { display: flex; flex-direction: column; gap: 12px; }
+  .pcard { border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; background: #fff; }
+  .pcard-head { display: flex; gap: 10px; align-items: flex-end; margin-bottom: 10px; }
+  .pcard-no {
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    min-width: 56px; padding: 6px 8px; background: #eef2f7; border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+  .pcard-no .no-label { font-size: 11px; color: var(--muted); }
+  .pcard-no .no-val { font-size: 22px; font-weight: 800; color: var(--brand); line-height: 1; }
+  .field { display: flex; flex-direction: column; gap: 3px; }
+  .field.name { flex: 1; }
+  .field label { font-size: 11px; color: var(--muted); padding-left: 2px; }
+  .field input {
+    font-size: 16px; padding: 10px; border: 1px solid var(--line); border-radius: 8px;
+    background: #f7f9fb; outline: none; width: 100%;
+  }
+  .field input:focus { border-color: var(--brand); background: #fff; }
+  .card-del {
+    margin-left: auto; align-self: flex-end; border: none; background: transparent;
+    color: var(--muted); font-size: 22px; width: 40px; height: 40px; min-height: 40px; padding: 0;
+  }
+
+  .scores-label { font-size: 12px; color: var(--muted); margin: 2px 0 6px; }
+  .scores {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(64px, 1fr)); gap: 8px;
+  }
+  .scell { display: flex; flex-direction: column; gap: 3px; }
+  .scell label { font-size: 11px; color: var(--muted); text-align: center; }
+  .scell input {
+    font-size: 17px; padding: 11px 6px; text-align: center;
+    border: 1px solid var(--line); border-radius: 8px; background: #f7f9fb; outline: none; width: 100%;
+  }
+  .scell input:focus { border-color: var(--brand); background: #fff; }
+  .scell.drop-hi input { background: var(--drop-hi); border-color: var(--drop-hi-bd); }
+  .scell.drop-lo input { background: var(--drop-lo); border-color: var(--drop-lo-bd); }
+  .scell.drop-hi label::after { content: " ▲去最高"; color: #c2410c; }
+  .scell.drop-lo label::after { content: " ▼去最低"; color: #1d4ed8; }
+
+  .pcard-foot { display: flex; align-items: center; gap: 12px; margin-top: 12px; }
+  .result { font-size: 14px; color: var(--muted); }
+  .result b { font-size: 26px; color: var(--good); margin-left: 6px; vertical-align: -2px; }
+  .result.empty b { color: var(--muted); font-size: 22px; }
+  .pcard-foot .btn-calc { margin-left: auto; }
+
+  .legend { font-size: 12px; color: var(--muted); margin-top: 12px; display: flex; gap: 16px; flex-wrap: wrap; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .swatch { width: 14px; height: 14px; border-radius: 3px; display: inline-block; border: 1px solid var(--line); }
+  .swatch.hi { background: var(--drop-hi); }
+  .swatch.lo { background: var(--drop-lo); }
+
+  /* ---- 紀錄 ---- */
+  .records { display: flex; flex-direction: column; gap: 10px; max-height: 60vh; overflow-y: auto; }
+  .rec-group { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .rec-group .gh { background: #eef2f7; padding: 6px 10px; font-size: 13px; color: var(--muted); display: flex; justify-content: space-between; }
+  .rec-item { padding: 9px 10px; border-top: 1px solid #eef1f4; }
+  .rec-line { display: grid; grid-template-columns: 48px 1fr auto; gap: 8px; font-size: 15px; align-items: center; }
+  .rec-line .rno { color: var(--muted); }
+  .rec-line .rname { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .rec-line .rscore { font-weight: 700; color: var(--good); }
+  .rec-scores { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+  .rec-scores .sc {
+    font-size: 12px; color: var(--muted); background: #f1f4f7; border: 1px solid var(--line);
+    border-radius: 6px; padding: 2px 7px; white-space: nowrap;
+  }
+  .rec-scores .sc.hi { background: var(--drop-hi); border-color: var(--drop-hi-bd); color: #9a3412; text-decoration: line-through; }
+  .rec-scores .sc.lo { background: var(--drop-lo); border-color: var(--drop-lo-bd); color: #1e40af; text-decoration: line-through; }
+  .rec-empty { color: var(--muted); font-size: 14px; padding: 8px 2px; }
+
+  /* ---- 底部固定操作列 ---- */
+  .actionbar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    background: #fff; border-top: 1px solid var(--line);
+    display: flex; gap: 10px; padding: 10px 14px;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom));
+  }
+  .actionbar button { flex: 1; }
+  .actionbar .btn-primary { flex: 1.4; }
+
+  .toast {
+    position: fixed; left: 50%; bottom: calc(var(--barH) + 16px); transform: translateX(-50%);
+    background: #1f2933; color: #fff; padding: 11px 18px; border-radius: 10px;
+    font-size: 14px; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s;
+    z-index: 60; max-width: 90vw; text-align: center;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(-4px); }
+
+  /* ---- 桌機雙欄 ---- */
+  @media (min-width: 880px) {
+    body { padding-bottom: 0; }
+    .layout {
+      grid-template-columns: 340px 1fr;
+      grid-template-areas: "rec input";
+      align-items: start; max-width: 1200px; margin: 0 auto;
+    }
+    .panel-records { grid-area: rec; position: sticky; top: 78px; }
+    .panel-input { grid-area: input; }
+    header h1 { font-size: 20px; }
+    .records { max-height: 72vh; }
+    /* 桌機：操作列回到面板內 */
+    .actionbar {
+      position: static; border-top: none; padding: 14px 0 0; margin-top: 14px;
+      border-radius: 0;
+    }
+    .toast { bottom: 24px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>裁判計分系統</h1>
+  <span class="rule">去最高、去最低，剩餘取平均（無條件捨去至小數第三位）</span>
+</header>
+
+<div class="layout">
+  <!-- 計分區（手機優先：放上方） -->
+  <section class="panel panel-input">
+    <div class="controls">
+      <div class="judge-ctrl">
+        <label>裁判人數</label>
+        <div class="stepper">
+          <button id="judgeMinus" class="btn-round" type="button" aria-label="減少裁判">−</button>
+          <span id="judgeNum" class="num">5</span>
+          <button id="judgePlus" class="btn-round" type="button" aria-label="增加裁判">＋</button>
+        </div>
+      </div>
+      <span class="hint">（最少 3 位）</span>
+    </div>
+
+    <div id="cards" class="cards"></div>
+
+    <div class="legend">
+      <span><i class="swatch hi"></i> 被去掉的最高分</span>
+      <span><i class="swatch lo"></i> 被去掉的最低分</span>
+    </div>
+
+    <div class="actionbar">
+      <button id="addRow" type="button">＋ 新增選手</button>
+      <button id="submitGroup" class="btn-primary" type="button">送出本組 ▶</button>
+    </div>
+  </section>
+
+  <!-- 側邊紀錄 -->
+  <section class="panel panel-records">
+    <h2>
+      本場紀錄
+      <button id="clearRecords" class="btn-ghost btn-danger" type="button">清空全部</button>
+    </h2>
+    <div id="records" class="records"></div>
+  </section>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+(function () {
+  "use strict";
+
+  var LS_KEY = "scoring_state_v1";
+  var MIN_JUDGES = 3;
+  var MAX_JUDGES = 12;
+  var DEFAULT_ROWS = 2;
+
+  // ---------- 狀態 ----------
+  var state = loadState() || {
+    judges: 5,
+    rows: makeEmptyRows(DEFAULT_ROWS, 5),
+    records: [],
+    groupCounter: 0
+  };
+
+  function makeEmptyRows(n, judges) {
+    var rows = [];
+    for (var i = 0; i < n; i++) rows.push(makeRow(judges));
+    return rows;
+  }
+  function makeRow(judges) {
+    return { name: "", scores: new Array(judges).fill(""), result: null, dropHi: -1, dropLo: -1 };
+  }
+
+  // ---------- 計算 ----------
+  function truncate3(x) {
+    var neg = x < 0, v = Math.abs(x);
+    var s = v.toFixed(6);                 // 先以 6 位四捨五入消除浮點雜訊
+    var dot = s.indexOf(".");
+    return (neg ? "-" : "") + s.slice(0, dot) + "." + s.slice(dot + 1, dot + 4); // 截斷三位
+  }
+
+  function computeRow(row, judges) {
+    var nums = [];
+    for (var i = 0; i < judges; i++) {
+      var raw = (row.scores[i] || "").trim();
+      if (raw === "") return { error: "有分數欄位尚未填寫" };
+      var n = Number(raw);
+      if (!isFinite(n)) return { error: "分數必須是數字" };
+      nums.push({ v: n, idx: i });
+    }
+    var sorted = nums.slice().sort(function (a, b) { return a.v - b.v; });
+    var dropLo = sorted[0].idx;
+    var dropHi = sorted[sorted.length - 1].idx;
+    var middle = sorted.slice(1, -1);
+    var sum = 0;
+    for (var k = 0; k < middle.length; k++) sum += middle[k].v;
+    return { scoreStr: truncate3(sum / middle.length), dropHi: dropHi, dropLo: dropLo };
+  }
+
+  // ---------- 持久化 ----------
+  function saveState() { try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch (e) {} }
+  function loadState() {
+    try {
+      var raw = localStorage.getItem(LS_KEY);
+      if (!raw) return null;
+      var s = JSON.parse(raw);
+      return (s && s.rows) ? s : null;
+    } catch (e) { return null; }
+  }
+
+  // ---------- DOM ----------
+  var cardsEl = document.getElementById("cards");
+  var judgeNum = document.getElementById("judgeNum");
+  var recordsEl = document.getElementById("records");
+  var toastEl = document.getElementById("toast");
+
+  function renderCards() {
+    cardsEl.innerHTML = "";
+    state.rows.forEach(function (row, ri) {
+      var card = document.createElement("div");
+      card.className = "pcard";
+
+      // 頭：編號（自動 index+1）/ 姓名 / 刪除
+      var head = document.createElement("div");
+      head.className = "pcard-head";
+      var badge = document.createElement("div");
+      badge.className = "pcard-no";
+      badge.innerHTML = '<span class="no-label">編號</span><span class="no-val">' + (ri + 1) + "</span>";
+      head.appendChild(badge);
+      head.appendChild(field("name", "姓名", row.name, "選填", function (v) { row.name = v; saveState(); }));
+      var del = document.createElement("button");
+      del.className = "card-del"; del.type = "button"; del.title = "刪除此選手"; del.innerHTML = "✕";
+      del.addEventListener("click", function () { removeRow(ri); });
+      head.appendChild(del);
+      card.appendChild(head);
+
+      // 分數標題
+      var sl = document.createElement("div");
+      sl.className = "scores-label"; sl.textContent = "裁判分數";
+      card.appendChild(sl);
+
+      // 分數格
+      var grid = document.createElement("div");
+      grid.className = "scores";
+      for (var j = 0; j < state.judges; j++) {
+        (function (jj) {
+          var cell = document.createElement("div");
+          cell.className = "scell";
+          if (row.result !== null && row.dropHi === jj) cell.className += " drop-hi";
+          else if (row.result !== null && row.dropLo === jj) cell.className += " drop-lo";
+          var lab = document.createElement("label");
+          lab.textContent = (jj + 1) + "";
+          var inp = document.createElement("input");
+          inp.type = "text"; inp.inputMode = "decimal";
+          inp.value = row.scores[jj] || "";
+          inp.dataset.row = ri; inp.dataset.score = jj;
+          inp.addEventListener("input", function () {
+            row.scores[jj] = inp.value; clearRowResult(row, card); saveState();
+          });
+          inp.addEventListener("keydown", function (e) {
+            if (e.key === "Enter") { e.preventDefault(); focusNextScore(ri, jj); }
+          });
+          cell.appendChild(lab); cell.appendChild(inp);
+          grid.appendChild(cell);
+        })(j);
+      }
+      card.appendChild(grid);
+
+      // 底：成績 + 計算
+      var foot = document.createElement("div");
+      foot.className = "pcard-foot";
+      var res = document.createElement("div");
+      res.className = "result" + (row.result === null ? " empty" : "");
+      res.innerHTML = "成績<b>" + (row.result === null ? "—" : row.result) + "</b>";
+      foot.appendChild(res);
+      var calc = document.createElement("button");
+      calc.className = "btn-calc"; calc.type = "button"; calc.textContent = "計算";
+      calc.addEventListener("click", function () { doCalcRow(ri); });
+      foot.appendChild(calc);
+      card.appendChild(foot);
+
+      cardsEl.appendChild(card);
+    });
+  }
+
+  function field(cls, labelText, value, placeholder, onInput) {
+    var wrap = document.createElement("div");
+    wrap.className = "field " + cls;
+    var lab = document.createElement("label"); lab.textContent = labelText;
+    var inp = document.createElement("input");
+    inp.type = "text"; inp.value = value || ""; inp.placeholder = placeholder || "";
+    inp.addEventListener("input", function () { onInput(inp.value); });
+    wrap.appendChild(lab); wrap.appendChild(inp);
+    return wrap;
+  }
+
+  function clearRowResult(row, card) {
+    if (row.result === null) return;
+    row.result = null; row.dropHi = -1; row.dropLo = -1;
+    var res = card.querySelector(".result");
+    if (res) { res.className = "result empty"; res.innerHTML = "成績<b>—</b>"; }
+    card.querySelectorAll(".scell.drop-hi, .scell.drop-lo").forEach(function (c) { c.className = "scell"; });
+  }
+
+  function doCalcRow(ri) {
+    var row = state.rows[ri];
+    var out = computeRow(row, state.judges);
+    if (out.error) { toast(out.error); return; }
+    row.result = out.scoreStr; row.dropHi = out.dropHi; row.dropLo = out.dropLo;
+    saveState(); renderCards();
+  }
+
+  function focusNextScore(ri, jj) {
+    var sel = null;
+    if (jj + 1 < state.judges) sel = 'input[data-row="' + ri + '"][data-score="' + (jj + 1) + '"]';
+    else if (ri + 1 < state.rows.length) sel = 'input[data-row="' + (ri + 1) + '"][data-score="0"]';
+    if (sel) { var el = cardsEl.querySelector(sel); if (el) el.focus(); }
+  }
+
+  function removeRow(ri) {
+    if (state.rows.length <= 1) { toast("至少保留一位選手"); return; }
+    state.rows.splice(ri, 1); saveState(); renderCards();
+  }
+
+  // ---------- 紀錄 ----------
+  function renderRecords() {
+    recordsEl.innerHTML = "";
+    if (!state.records.length) {
+      var e = document.createElement("div");
+      e.className = "rec-empty"; e.textContent = "尚無紀錄。送出本組後會顯示在這裡。";
+      recordsEl.appendChild(e); return;
+    }
+    var groups = {}, order = [];
+    state.records.forEach(function (r) {
+      if (!groups[r.group]) { groups[r.group] = []; order.push(r.group); }
+      groups[r.group].push(r);
+    });
+    order.slice().reverse().forEach(function (g) {
+      var box = document.createElement("div"); box.className = "rec-group";
+      var head = document.createElement("div"); head.className = "gh";
+      head.innerHTML = "<span>第 " + g + " 組</span><span>" + groups[g].length + " 人</span>";
+      box.appendChild(head);
+      groups[g].forEach(function (r) {
+        var item = document.createElement("div"); item.className = "rec-item";
+
+        var top = document.createElement("div"); top.className = "rec-line";
+        top.innerHTML =
+          '<span class="rno">' + escapeHtml(r.no) + "</span>" +
+          '<span class="rname">' + (r.name ? escapeHtml(r.name) : '<span style="color:#9aa4ae">（未填）</span>') + "</span>" +
+          '<span class="rscore">' + escapeHtml(r.score) + "</span>";
+        item.appendChild(top);
+
+        if (r.scores && r.scores.length) {
+          var sl = document.createElement("div"); sl.className = "rec-scores";
+          r.scores.forEach(function (sv, j) {
+            var chip = document.createElement("span");
+            chip.className = "sc" + (j === r.dropHi ? " hi" : (j === r.dropLo ? " lo" : ""));
+            chip.textContent = "裁" + (j + 1) + " " + sv;
+            sl.appendChild(chip);
+          });
+          item.appendChild(sl);
+        }
+
+        box.appendChild(item);
+      });
+      recordsEl.appendChild(box);
+    });
+  }
+
+  function submitGroup() {
+    var active = [], hasAny = false;
+    for (var i = 0; i < state.rows.length; i++) {
+      var row = state.rows[i];
+      var filledScore = row.scores.some(function (s) { return (s || "").trim() !== ""; });
+      if (!filledScore) continue;             // 無分數的空白卡片略過
+      hasAny = true;
+      var out = computeRow(row, state.judges);
+      if (out.error) { toast("第 " + (i + 1) + " 位選手：" + out.error); return; }
+      active.push({
+        no: i + 1,
+        name: (row.name || "").trim(),
+        scoreStr: out.scoreStr,
+        scores: row.scores.slice(0, state.judges).map(function (s) { return (s || "").trim(); }),
+        dropHi: out.dropHi,
+        dropLo: out.dropLo
+      });
+    }
+    if (!hasAny) { toast("沒有可送出的資料"); return; }
+
+    state.groupCounter += 1;
+    active.forEach(function (a) {
+      state.records.push({
+        group: state.groupCounter,
+        no: String(a.no),
+        name: a.name,
+        score: a.scoreStr,
+        scores: a.scores,
+        dropHi: a.dropHi,
+        dropLo: a.dropLo
+      });
+    });
+
+    state.rows = makeEmptyRows(DEFAULT_ROWS, state.judges);
+    saveState(); renderCards(); renderRecords();
+    toast("已送出第 " + state.groupCounter + " 組（" + active.length + " 人）");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  // ---------- 裁判人數 ----------
+  function setJudges(n) {
+    n = Math.max(MIN_JUDGES, Math.min(MAX_JUDGES, n));
+    state.judges = n; judgeNum.textContent = n;
+    state.rows.forEach(function (row) {
+      var s = row.scores.slice(0, n);
+      while (s.length < n) s.push("");
+      row.scores = s; row.result = null; row.dropHi = -1; row.dropLo = -1;
+    });
+    saveState(); renderCards();
+  }
+
+  // ---------- 工具 ----------
+  var toastTimer = null;
+  function toast(msg) {
+    toastEl.textContent = msg; toastEl.classList.add("show");
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.classList.remove("show"); }, 2200);
+  }
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  // ---------- 事件 ----------
+  document.getElementById("judgePlus").addEventListener("click", function () { setJudges(state.judges + 1); });
+  document.getElementById("judgeMinus").addEventListener("click", function () { setJudges(state.judges - 1); });
+  document.getElementById("addRow").addEventListener("click", function () {
+    state.rows.push(makeRow(state.judges)); saveState(); renderCards();
+    var cards = cardsEl.children;
+    if (cards.length) cards[cards.length - 1].scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+  document.getElementById("submitGroup").addEventListener("click", submitGroup);
+  document.getElementById("clearRecords").addEventListener("click", function () {
+    if (!state.records.length) { toast("目前沒有紀錄"); return; }
+    if (confirm("確定要清空全部紀錄嗎？此動作無法復原。")) {
+      state.records = []; state.groupCounter = 0;
+      saveState(); renderRecords(); toast("已清空全部紀錄");
+    }
+  });
+
+  // ---------- 初始化 ----------
+  judgeNum.textContent = state.judges;
+  renderCards(); renderRecords();
+})();
+</script>
+</body>
+</html>
