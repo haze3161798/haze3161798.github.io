@@ -129,7 +129,7 @@
 
   /* ---- 紀錄 ---- */
   .records { display: flex; flex-direction: column; gap: 10px; max-height: 60vh; overflow-y: auto; }
-  .rec-group { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .rec-group { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; flex-shrink: 0; }
   .rec-group .gh { background: #eef2f7; padding: 6px 10px; font-size: 13px; color: var(--muted); display: flex; justify-content: space-between; }
   .rec-item { padding: 9px 10px; border-top: 1px solid #eef1f4; }
   .rec-line { display: grid; grid-template-columns: 48px 1fr auto; gap: 8px; font-size: 15px; align-items: center; }
